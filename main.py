@@ -16,3 +16,5 @@ def printMenu():
 
 
 printMenu()
+
+x = "fi fai fou"
