@@ -7,14 +7,7 @@
 # if (len(x)==3):
 #     print("Adiocionar nomes das arestas lista")
 
-def printMenu():
-    print("=" * 24, " MENU ", "=" * 24)
+from menu import printMenu
 
-    print("Deseja criar um grafo direcionado ou nao direcionado")
+direc, valor = printMenu(0)
 
-    print("=" * 56)
-
-
-printMenu()
-
-x = "fi fai fou"
