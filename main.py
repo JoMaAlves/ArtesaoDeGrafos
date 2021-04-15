@@ -1,13 +1,13 @@
-# num = input("Digite um número:")
-# x = num.split(" ")
-# if (len(x)==1):
-#     print("Adiocionar vértices na lista")
-# if (len(x)==2):
-#     print("Adiocionar arestas lista")
-# if (len(x)==3):
-#     print("Adiocionar nomes das arestas lista")
-
 from menu import printMenu
+from graph import *
 
-direc, valor = printMenu(0)
+
+start, direc, valor = printMenu(0)
+
+graph = graph(direc, valor)
+
+while start:
+    answer = printMenu(1)
+
+    
 

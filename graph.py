@@ -7,16 +7,31 @@ class graph:
         self.size = 0
 
     def addNode(self):
-        node = vertex(input())
+        node = vertex(input("Digite o nome do seu Vertice: "))
+        self.nodeList.append(node)
+        self.order += 1
+
+    def addEdge(self, node):
+        if self.valor == 1:
+            #add edge-> self.adj[grafo1].add(grafo2)
+            if self.direc == 2:
+                #//add node too-> self.adj[grafo2].add(grafo1)
+                print("")
+        else:
+            #add edge
+            if self.direc == 2:
+                print("")
+        self.size += 1
+        return 0
 
     def printGraph(self):
         return 0
     
     def getOrder(self):
-        return 0
+        return self.order
     
     def getSize(self):
-        return 0
+        return self.size
     
     def getDegree(self, ):
         return 0
