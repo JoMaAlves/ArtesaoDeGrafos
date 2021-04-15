@@ -37,10 +37,13 @@ def printMenu(type):
 
         while True:
             start = input("                             Resposta: ")
-            if((start == "2") or (start.capitalize() == "Nao") or (start.capitalize() == "Não")):
+            if ((start == "2") or (start.capitalize() == "Nao") 
+                    or (start.capitalize() == "Não")):
                 return 0, None, None
-            elif((start == "1") or (start.capitalize() == "Sim")):
+            elif ((start == "1") or (start.capitalize() == "Sim")):
                 break
+        
+        
         
         print("""
                     +----------------------------------------------------------+   
@@ -52,8 +55,21 @@ def printMenu(type):
                     +----------------------------------------------------------+
         """)
 
-        answer1 = int(input("        Sua reposta: "))
+        answer1 = None
+        while True:
+            answer1 = input("                             Resposta: ")
+            
+            if ((answer1 == "1") or (answer1.capitalize() == "Direcionado")):
+                answer1 = True
+                break
+            
+            elif ((answer1 == "2") or (answer1.capitalize() == "Não direcionado")
+                    or (answer1.capitalize() == "Nao direcionado")):
+                answer1 = False
+                break
 
+        
+        
         print("""
                     +----------------------------------------------------------+   
                     |                                                          |
@@ -64,24 +80,36 @@ def printMenu(type):
                     +----------------------------------------------------------+
         """)
 
-        answer2 = int(input("        Sua reposta: "))
+        answer2 = None
+        while True:
+            answer2 = input("                             Resposta: ")
+            
+            if ((answer2 == "1") or (answer2.capitalize() == "Valorado")):
+                answer2 = True
+                break
+            
+            elif ((answer2 == "2") or (answer2.capitalize() == "Não valorado")
+                    or (answer2.capitalize() == "Nao valorado")):
+                answer2 = False
+                break
 
         return 1, answer1, answer2
+    
     else:
         print("""
-        +--------------------------------------+
-        |                                      |
-        |   [ 1 ] Adicionar Vertice            |
-        |   [ 2 ] Adicionar Aresta             |
-        |   [ 3 ] Imprimir Grafo               |
-        |   [ 4 ] Ordem do Grafo               |
-        |   [ 5 ] Tamanho do Grafo             |
-        |   [ 6 ] Checar Vertices Adjacentes   |
-        |   [ 7 ] Checar Grau de Vertice       |
-        |                                      |
-        +--------------------------------------+
+                                   __  __                     
+                                  |  \/  |  ___   _ _   _  _ 
+                                  | |\/| | / -_) | ' \ | || |
+                +---------------- |_|  |_| \___| |_||_| \_,_| -----------------+                      
+                |                                                              |
+                |   [ 1 ] Adicionar Vertice   [ 5 ] Tamanho do Grafo           |
+                |   [ 2 ] Adicionar Aresta    [ 6 ] Checar Vertices Adjacentes |
+                |   [ 3 ] Imprimir Grafo      [ 7 ] Checar Grau de Vertice     |
+                |   [ 4 ] Ordem do Grafo      [ 0 ] Sair                       |
+                |                                                              |
+                +--------------------------------------------------------------+
         """)
 
-        return 
+        return input("                             Resposta: ")
         
         
