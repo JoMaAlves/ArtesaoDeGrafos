@@ -1,6 +1,7 @@
 from time import sleep
+import os
 
-def printMenu(type):
+def printMenu(type, clear):
 
     if not type:
 #  𝓑𝓸𝓶 𝓭𝓲𝓪 𝓑𝓻𝓮𝓷𝓲𝓷𝓱𝓸, 𝓹𝓸𝓭𝓮𝓻𝓲𝓪𝓼 𝓲𝓷𝓹𝓾𝓽𝓪𝓻 𝓾𝓶 𝓰𝓻𝓪𝓯𝓸 𝓮𝓶 𝓷𝓸𝓼𝓼𝓸 𝓹𝓻𝓸𝓰𝓻𝓪𝓶𝓪?
@@ -43,7 +44,7 @@ def printMenu(type):
             elif ((start == "1") or (start.capitalize() == "Sim")):
                 break
         
-        
+        os.system(clear)
         
         print("""
                     +----------------------------------------------------------+   
@@ -68,7 +69,7 @@ def printMenu(type):
                 answer1 = False
                 break
 
-        
+        os.system(clear)
         
         print("""
                     +----------------------------------------------------------+   
@@ -93,6 +94,8 @@ def printMenu(type):
                 answer2 = False
                 break
 
+            
+        os.system(clear)
         return 1, answer1, answer2
     
     elif (type == 1):

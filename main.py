@@ -1,13 +1,19 @@
 from menu import printMenu
 from graph import *
+from platform import system
+import os
 
+if(system() == "Windows"): 
+    clear = "cls"
+else:
+    clear = "clear"
 
-start, direc, valor = printMenu(0)
+start, direc, valor = printMenu(0, clear)
 
 graph = graph(direc, valor)
 
 while start:
-    answer = printMenu(1)
+    answer = printMenu(1, clear)
 
     if ((answer == "0") or (answer.capitalize() == "Sair")):
         break
@@ -26,6 +32,7 @@ while start:
     elif((answer == "7") or (answer.capitalize() == "Checar grau do vertice")):
         graph.getDegree()
     
+    os.system(clear)
+    
 
-
-printMenu(2)
+printMenu(2, clear)
