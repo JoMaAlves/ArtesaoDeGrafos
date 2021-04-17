@@ -16,6 +16,7 @@ while start:
     answer = printMenu(1, clear)
 
     if ((answer == "0") or (answer.capitalize() == "Sair")):
+        os.system(clear)
         break
     elif((answer == "1") or (answer.capitalize() == "Adicionar vertice")):
         graph.addNode()
