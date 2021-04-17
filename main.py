@@ -33,7 +33,7 @@ while start:
     elif((answer == "7") or (answer.capitalize() == "Checar grau do vertice")):
         graph.getDegree()
     
-    os.system(clear)
+    #os.system(clear)
     
 
 printMenu(2, clear)
