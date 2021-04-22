@@ -142,5 +142,4 @@ class vertex:
                 lista_final_edges.append(0)
                 
 
-        return lista_final_edges ,len(lista_final_edges)   
-        
+        return lista_final_edges
