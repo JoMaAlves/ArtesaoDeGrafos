@@ -261,9 +261,18 @@ def printAdjCheckMenu():
                 +--------------------------------------------------------------+
         
                          Vertices:""", end=" ")
+def printAdjCheckResult(check):
+    find = "nao"
+    if(check):
+        find = "sao"
+    
+    print(f"""
+                              +----------------------------------+
+                              |      Vertices {find} Adjacentes     |
+                              +----------------------------------+              
+    """)
 
-def printAdjacencyMatrix(vertex, destinies):
-
+def printAdjacencyList(vertex, destinies):
     subtable = BeautifulTable(maxwidth=120)
     subtable2 = BeautifulTable(maxwidth=240)
     
@@ -282,8 +291,20 @@ def printAdjacencyMatrix(vertex, destinies):
     parent_table.columns.padding_right = 0
     
     parent_table.set_style(BeautifulTable.STYLE_BOX)
-
     print(parent_table)
+
+def printAdjacencyMatrix(vertex, destinies):
+    table = BeautifulTable(maxwidth=360)
+    
+    table.columns.header = vertex
+    
+    for i in destinies:
+        table.rows.append(i)
+    
+    table.rows.header = vertex
+    table.set_style(BeautifulTable.STYLE_BOX)
+
+    print(table)
 
 def printDone():
     print("""
