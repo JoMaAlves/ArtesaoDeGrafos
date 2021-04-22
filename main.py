@@ -14,10 +14,10 @@ else:
 animator(0.2, 3, clear)
 
 # Gets the basic information for the software
-start, direc, valor = printStart(clear)
+start, direc, weight = printStart(clear)
 
 # Creates the graph
-graph = graph(direc, valor)
+graph = graph(direc, weight)
 
 # Loop that maintains the software
 while start:

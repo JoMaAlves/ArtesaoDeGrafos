@@ -2,18 +2,20 @@ from prints import *
 from vertex import vertex
 
 class graph:
-    def __init__(self, direc, valor):
+    def __init__(self, direc, weight):
         self.nodeList = []
         self.direc = direc
-        self.valor = valor
+        self.weight = weight
         self.size = 0
 
+    # Adds a vertex
     def addNode(self):
 
         printAddNode()
         nodes = input()
         node_aux = nodes.strip().split(' ')
-         
+        
+        # Check if the nodes exist
         for i in node_aux:
             check = False
             for j in self.nodeList:
@@ -73,12 +75,12 @@ class graph:
                 continue
             
             # Check if it is a paralel conection
-            if(node1.checkEdges(node2, self.direc, self.valor)):
+            if(node1.checkEdges(node2, self.direc, self.weight)):
                 printParalelEdge()
                 continue
             
             # Adds the edge into the nodes edge lists according to weight and direction
-            if(self.valor):
+            if(self.weight):
                 # Gets the edge's weight
                 print(" " * 24,end="")
                 weight = int(input("Digite o valor da aresta: "))
@@ -191,11 +193,11 @@ class graph:
             list_values.append(i.value)
 
             if(choice == 1):
-                list_aux, size = i.getValuesMatrix(self.direc, self.valor)
+                list_aux, size = i.getValuesMatrix(self.direc, self.weight)
                 if(size > max_size):
                     max_size = size
             elif(choice == 2):
-                list_aux = i.getMatrixAdj(self.direc, self.valor,self.nodeList)
+                list_aux = i.getMatrixAdj(self.direc, self.weight,self.nodeList)
 
             list_table.append( list_aux)
 
@@ -206,38 +208,3 @@ class graph:
 
 
         return list_values,list_table
-
-    # def getAdjacencyList(self):
-    #     list_vertex = []
-    #     list_edges = []
-        
-    #     max_size = 0
-    #     for i in self.nodeList:
-    #         list_vertex.append(i.value)
-    #         list_aux, size = i.getValuesMatrix(self.direc, self.valor)
-    #         list_edges.append(list_aux)
-    #         if(size > max_size):
-    #             max_size = size
-
-    #     for i in list_edges:
-    #         while(len(i) < max_size):
-    #             i.append("")
-        
-    #     return list_vertex,list_edges
-
-    # def getAdjacencyMatrix(self):
-    #     list_vertex = []
-    #     list_edges = []
-    #     max_size = 0
-    #     for i in self.nodeList:
-    #         list_vertex.append(i.value)
-    #         list_aux, size = i.getMatrixAdj(self.direc, self.valor,self.nodeList)
-    #         list_edges.append( list_aux)
-    #         if(size > max_size):
-    #             max_size = size
-
-    #     for i in list_edges:
-    #         while(len(i) < max_size):
-    #             i.append("")
-            
-    #     return list_vertex,list_edges
