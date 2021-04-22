@@ -33,7 +33,6 @@ class graph:
 
             # Breaks creation if there is no input
             if(nodes == ""):
-                printDone()
                 break
 
             nodes = nodes.strip().split(" ")
@@ -106,10 +105,11 @@ class graph:
 
 
     def printGraph(self):
-        vertex, destinies = self.getMatrix()
-        #v, d = self.getAdj()
-        printAdjacencyMatrix(vertex, destinies)
-        #printAdjacencyMatrix(v, d)
+        vertex, destinies= self.getGraph(1)
+        vertex2, binary = self.getGraph(2)
+
+        printAdjacencyList(vertex, destinies)
+        printAdjacencyMatrix(vertex2, binary)
     
     # Gets the graph order
     def getOrder(self):
@@ -145,7 +145,7 @@ class graph:
             printGetDegree( answer )
     
     # Gets the list of adjacency of a vertex
-    def adjacencyList(self):
+    def vertexAdjacencyList(self):
         printAdjListMenu()
         check = input().strip()
         
@@ -167,49 +167,77 @@ class graph:
         printAdjCheckMenu()
         vertex = input().strip().split(" ")
         
-        # Looks over one vertex for the other
+        # Looks over a vertex, for the other one
         found = False
         for i in self.nodeList:
             if(i.value == vertex[0]):
-                i.adjacencyCheck(vertex[1],self.direc)
+                result = i.adjacencyCheck(vertex[1],self.direc)
+                found = True
                 break
         
         # Breaks if not found
         if(not found):
             printNotFound()
             return 1
+
+        printAdjCheckResult(result)
     
+    def getGraph(self, choice):
+        list_values = []
+        list_table = []
 
-    def getMatrix(self):
-        list_vertex = []
-        list_edges = []
         max_size = 0
         for i in self.nodeList:
-            list_vertex.append(i.value)
-            list_aux, size = i.getValuesMatrix(self.direc, self.valor)
-            list_edges.append(list_aux)
-            if(size > max_size):
-                max_size = size
+            list_values.append(i.value)
 
-        for i in list_edges:
-            while(len(i) < max_size):
-                i.append("")
+            if(choice == 1):
+                list_aux, size = i.getValuesMatrix(self.direc, self.valor)
+                if(size > max_size):
+                    max_size = size
+            elif(choice == 2):
+                list_aux = i.getMatrixAdj(self.direc, self.valor,self.nodeList)
+
+            list_table.append( list_aux)
+
+        if(choice == 1):
+            for i in list_table:
+                while(len(i) < max_size):
+                    i.append("")
+
+
+        return list_values,list_table
+
+    # def getAdjacencyList(self):
+    #     list_vertex = []
+    #     list_edges = []
         
-        return list_vertex,list_edges
+    #     max_size = 0
+    #     for i in self.nodeList:
+    #         list_vertex.append(i.value)
+    #         list_aux, size = i.getValuesMatrix(self.direc, self.valor)
+    #         list_edges.append(list_aux)
+    #         if(size > max_size):
+    #             max_size = size
 
-    def getAdj(self):
-        list_vertex = []
-        list_edges = []
-        max_size = 0
-        for i in self.nodeList:
-            list_vertex.append(i.value)
-            list_aux, size = i.getMatrixAdj(self.direc, self.valor,self.nodeList)
-            list_edges.append(list_aux)
-            if(size > max_size):
-                max_size = size
+    #     for i in list_edges:
+    #         while(len(i) < max_size):
+    #             i.append("")
+        
+    #     return list_vertex,list_edges
 
-        for i in list_edges:
-            while(len(i) < max_size):
-                i.append("")
+    # def getAdjacencyMatrix(self):
+    #     list_vertex = []
+    #     list_edges = []
+    #     max_size = 0
+    #     for i in self.nodeList:
+    #         list_vertex.append(i.value)
+    #         list_aux, size = i.getMatrixAdj(self.direc, self.valor,self.nodeList)
+    #         list_edges.append( list_aux)
+    #         if(size > max_size):
+    #             max_size = size
+
+    #     for i in list_edges:
+    #         while(len(i) < max_size):
+    #             i.append("")
             
-        return list_vertex,list_edges
+    #     return list_vertex,list_edges

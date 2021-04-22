@@ -50,7 +50,7 @@ while start:
         continue
 
     elif((answer == "6") or (answer.capitalize() == "Listar vertices adjacentes")):
-        graph.adjacencyList()
+        graph.vertexAdjacencyList()
         continue
         
     elif((answer == "7") or (answer.capitalize() == "Checar grau do vertice")):
