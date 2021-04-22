@@ -10,39 +10,55 @@ if(system() == "Windows"):
 else:
     clear = "clear"
 
+# Prints the Capybara loading screen
+animator(0.2, 3, clear)
+
+# Gets the basic information for the software
 start, direc, valor = printStart(clear)
 
+# Creates the graph
 graph = graph(direc, valor)
 
+# Loop that maintains the software
 while start:
+    # Prints the Menu and gets the choice
     answer = printMenu()
 
+    # Graph functions will be called according to the choice
     if ((answer == "0") or (answer.capitalize() == "Sair")):
         os.system(clear)
         break
 
     elif((answer == "1") or (answer.capitalize() == "Adicionar vertice")):
         graph.addNode()
+        continue
 
     elif((answer == "2") or (answer.capitalize() == "Adicionar aresta")):
         graph.addEdge()
+        continue
 
     elif((answer == "3") or (answer.capitalize() == "Imprimir grafo")):
         graph.printGraph()
+        continue
 
     elif((answer == "4") or (answer.capitalize() == "Ordem do grafo")):
         graph.getOrder()
+        continue
 
     elif((answer == "5") or (answer.capitalize() == "Tamanho do grafo")):
         graph.getSize()
+        continue
 
     elif((answer == "6") or (answer.capitalize() == "Listar vertices adjacentes")):
         graph.adjacencyList()
+        continue
         
     elif((answer == "7") or (answer.capitalize() == "Checar grau do vertice")):
         graph.getDegree()
+        continue
     
     elif((answer == "8") or (answer.capitalize() == "Checar adjacencia")):
         graph.adjacencyCheck()
+        continue
 
 printThanks()
