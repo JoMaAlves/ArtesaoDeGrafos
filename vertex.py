@@ -81,16 +81,16 @@ class vertex:
             for i in self.nextEdges:
                 if(node == i.value):
                     check = True
+            
+            for i in self.prevEdges:
+                if(node == i.value):
+                    check = True
         else:
             for i in self.edges:
                 if(node == i.value):
                     check = True
             
-        
-        if(check):
-            print("Os vértices são adjacentes")
-        else:
-            print("Os vértices não são adjacentes")
+        return check
 
     # Gets the degree of the vertex
     def getDegreeEdges(self,direc):
