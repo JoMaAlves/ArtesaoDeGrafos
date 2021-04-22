@@ -1,4 +1,5 @@
 from prints import *
+from vertex import vertex
 
 class graph:
     def __init__(self, direc, valor):
@@ -7,11 +8,9 @@ class graph:
         self.valor = valor
         self.size = 0
 
-    # === DONE ===
     def addNode(self):
 
         printAddNode()
-    
         nodes = input()
         node_aux = nodes.strip().split(' ')
          
@@ -20,37 +19,40 @@ class graph:
             for j in self.nodeList:
                 if(i == j.value):
                     check = True
+
             if(not check):
                 self.nodeList.append(vertex(i))
         
         printDone()
 
-
+    # Creates Edges over a loop
     def addEdge(self):
         while 1:
-            #Adds an Edge
             printAddEdge()
             nodes = input()
 
+            # Breaks creation if there is no input
             if(nodes == ""):
+                printDone()
                 break
 
             nodes = nodes.strip().split(" ")
 
-            #Checks if there were more then 1 vertex and corrects if not
+            # Checks if there were more then 1 vertex and corrects if not
             if(len(nodes) == 1):
                 sec = ""
                 while sec == "":
-                    print(" " * 20,end="")
+                    print(" " * 24,end="")
                     sec = input("Digite o segundo vertice: ")
 
                 nodes.append(sec)
 
+            # Checks if it is the same vertex
             if(nodes[0] == nodes[1]):
-                print("Nao eh possivel ligar o nodo a ele mesmo")
+                printSameVertex()
                 continue
 
-            #Checks if both vertex exist
+            # Checks if both vertex exist and connect them with the node variables
             check = [False, False]
             node1 = None
             node2 = None
@@ -65,15 +67,24 @@ class graph:
                         else:
                             node1 = j      
                         break
-
+            
+            # Checks if both vertex were found
             if(check[0] == False or check[1]== False):
                 printNotFound()
                 continue
-
+            
+            # Check if it is a paralel conection
+            if(node1.checkEdges(node2, self.direc, self.valor)):
+                printParalelEdge()
+                continue
+            
+            # Adds the edge into the nodes edge lists according to weight and direction
             if(self.valor):
-                print(" " * 20,end="")
-                weight = input("Digite o valor da aresta: ")
+                # Gets the edge's weight
+                print(" " * 24,end="")
+                weight = int(input("Digite o valor da aresta: "))
 
+                # A tuple is being used if there is a weight for the edge (vertex, weight)
                 if(self.direc):    
                     node1.addNext( (node2, weight) )
                     node2.addPrevious( (node1, weight) )
@@ -90,27 +101,30 @@ class graph:
                     node2.addEdge( node1 )
 
             self.size += 1
-            #break
 
         printDone()
 
 
     def printGraph(self):
-        for i in self.nodeList:
-            print(i.value, end="-")
+        vertex, destinies = self.getMatrix()
+        #v, d = self.getAdj()
+        printAdjacencyMatrix(vertex, destinies)
+        #printAdjacencyMatrix(v, d)
     
-    # === DONE ===
+    # Gets the graph order
     def getOrder(self):
         printValue( "GetOrder", len(self.nodeList) )
     
-    # === DONE ===
+    # Gets the graph size
     def getSize(self):
         printValue( "GetSize", self.size )
     
-
+    # Gets the graph degree
     def getDegree(self):
         printDegree()
         vert= input().strip()
+
+        # Get the degree of a vertex call its method getDegreeEdges()
         found = False
         answer, answer2 = None, None
         for i in self.nodeList:
@@ -118,21 +132,24 @@ class graph:
                 answer, answer2 = i.getDegreeEdges(self.direc)
                 found = True
                 break
-
+        
+        # Breaks if the vertex was not found
         if(not found):
             printNotFound()
             return 1
 
+        # Checks if the graph is directed not
         if(self.direc):
             printGetDegree( answer, answer2 )
         else:
             printGetDegree( answer )
     
-
+    # Gets the list of adjacency of a vertex
     def adjacencyList(self):
         printAdjListMenu()
         check = input().strip()
         
+        # Search for the node and gets its list using its method listAdjacents()
         found = False
         for i in self.nodeList:
             if(i.value == check):
@@ -140,128 +157,59 @@ class graph:
                 found = True
                 break
         
+        # If not found, breaks
         if(not found):
             printNotFound()
             return 1
 
-
+    # Checks the adjacency between two vertex
     def adjacencyCheck(self):
         printAdjCheckMenu()
         vertex = input().strip().split(" ")
         
+        # Looks over one vertex for the other
         found = False
         for i in self.nodeList:
             if(i.value == vertex[0]):
                 i.adjacencyCheck(vertex[1],self.direc)
                 break
         
+        # Breaks if not found
         if(not found):
             printNotFound()
             return 1
     
 
     def getMatrix(self):
-        '''
-        from beautifultable import BeautifulTable
-        table = BeautifulTable()
-        matrix = []
-        lista_values = []
+        list_vertex = []
+        list_edges = []
+        max_size = 0
         for i in self.nodeList:
-            list_aux =i.getValuesMatrix(self.nodeList,i.value)
-            matrix.append(list_aux)
-            lista_values.append(i.value)
+            list_vertex.append(i.value)
+            list_aux, size = i.getValuesMatrix(self.direc, self.valor)
+            list_edges.append(list_aux)
+            if(size > max_size):
+                max_size = size
+
+        for i in list_edges:
+            while(len(i) < max_size):
+                i.append("")
         
-        table.column_headers =lista_values
-        for i in matrix:
-            table.append_row(i)
-        
-        print(table)
+        return list_vertex,list_edges
 
-        #df_matrix=  pd.DataFrame((matrix),columns=self.nodeList)
-        #show(df_matrix)
-        '''
+    def getAdj(self):
+        list_vertex = []
+        list_edges = []
+        max_size = 0
+        for i in self.nodeList:
+            list_vertex.append(i.value)
+            list_aux, size = i.getMatrixAdj(self.direc, self.valor,self.nodeList)
+            list_edges.append(list_aux)
+            if(size > max_size):
+                max_size = size
 
-class vertex:
-    def __init__(self, value):
-        self.value = value
-        self.edges = []
-        self.prevEdges = []
-        self.nextEdges = []
-        #next aponta 
-        #prev é apontado.
-
-
-    def addEdge(self, edge):
-        self.edges.append(edge)
-
-
-    def addNext(self, next):
-        self.nextEdges.append(next)
-
-
-    def addPrevious(self, prev):
-        self.prevEdges.append(prev)
-
-
-    def listAdjacents(self,direc):
-        if(direc):
-            next = ""
-            prev = ""
-
-            for i in self.nextEdges:
-                next += str(i.value) + " "
-
-            for i in self.prevEdges:
-                prev+=str(i.value) + " "
-    
-            printAdjList(direc, next.strip(), prev.strip())
-
-        else:
-            all = ""
-
-            for i in self.edges:
-                all +=str(i.value) + " "
-
-            printAdjList(direc, all.strip())
-
-    def adjacencyCheck(self, node, direc):
-        
-        check = False
-        if(direc):
-            for i in self.nextEdges:
-                if(node == i.value):
-                    check = True
-        else:
-            for i in self.edges:
-                if(node == i.value):
-                    check = True
+        for i in list_edges:
+            while(len(i) < max_size):
+                i.append("")
             
-        
-        if(check):
-            print("Os vértices são adjacentes")
-        else:
-            print("Os vértices não são adjacentes")
-
-
-    def getDegreeEdges(self,direc):
-        if(direc):
-            return len(self.nextEdges), len(self.prevEdges)
-        else:
-            return len(self.edges)
-    
-    def getValuesMatrix(self,list_elements,value_select):
-        '''
-
-        lista=[]
-        lista.append(value_select)
-        for i in list_elements:
-            if(i.value in self.nextEdges):
-                lista.append(1)
-            else:
-                lista.append(0)
-        
-        return lista
-
-
-
-        '''
+        return list_vertex,list_edges
