@@ -1,5 +1,7 @@
 import math
+import time
 import os
+from beautifultable import BeautifulTable
 
 def printStart(clear):
     print("""
@@ -260,6 +262,29 @@ def printAdjCheckMenu():
         
                          Vertices:""", end=" ")
 
+def printAdjacencyMatrix(vertex, destinies):
+
+    subtable = BeautifulTable(maxwidth=120)
+    subtable2 = BeautifulTable(maxwidth=240)
+    
+    subtable.columns.append(vertex)
+
+    for i in destinies:
+        subtable2.rows.append(i)
+
+    subtable.set_style(BeautifulTable.STYLE_BOX)
+    subtable2.set_style(BeautifulTable.STYLE_BOX)
+
+    parent_table = BeautifulTable(maxwidth=360)
+    parent_table.columns.header = ["Vértice Origem", "Destinos"]
+    parent_table.rows.append([subtable, subtable2])
+    parent_table.columns.padding_left = 0
+    parent_table.columns.padding_right = 0
+    
+    parent_table.set_style(BeautifulTable.STYLE_BOX)
+
+    print(parent_table)
+
 def printDone():
     print("""
                               +----------------------------------+
@@ -272,6 +297,20 @@ def printNotFound():
                               +----------------------------------+
                               |     Vertice(s) nao encontrado    |
                               +----------------------------------+              
+    """)
+
+def printSameVertex():
+    print("""
+                       +------------------------------------------------+
+                       |   Acao nao pode ser concluida: Mesmo Vertice   |
+                       +------------------------------------------------+              
+    """)
+
+def printParalelEdge():
+    print("""
+                     +----------------------------------------------------+
+                     |    Acao nao pode ser concluida: Aresta Paralela    |
+                     +----------------------------------------------------+              
     """)
 
 def printThanks():
@@ -291,3 +330,20 @@ def printThanks():
                     |_|   \__,_| |_|    \__| |_| \__| |_| | .__/ \__,_| |_|  
                                                           |_|                
     """)
+
+
+def animator (delay, repeat, clear):
+    filesnames = ["loading/capivara1.txt", "loading/capivara2.txt", "loading/capivara3.txt", "loading/capivara2.txt", "loading/capivara1.txt"]
+    
+    frames = []
+    here = os.path.dirname(os.path.abspath(__file__))
+    
+    for name in filesnames:
+        with open(os.path.join(here, name), "r", encoding="utf8") as f:
+            frames.append(f.readlines())
+    
+    for i in range(repeat):
+        for frame in frames:
+            print("".join(frame))
+            time.sleep(delay)
+            os.system(clear)
