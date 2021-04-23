@@ -122,7 +122,7 @@ class vertex:
         if(direc):
             return len(self.nextEdges), len(self.prevEdges)
         else:
-            return len(self.edges)
+            return len(self.edges), None
     
     
     def getValuesMatrix(self,direc, valor):
