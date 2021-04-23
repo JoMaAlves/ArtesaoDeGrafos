@@ -168,7 +168,7 @@ def printDegree():
                         Digite o vertice:""", end=" ")
 
 
-def printGetDegree(value, value2 = None):
+def printGetDegree(direc, value, value2 = None):
     size1 = len(str(value))
     size = size1
 
@@ -182,7 +182,7 @@ def printGetDegree(value, value2 = None):
     print("\n")
     print(27*" " + "+------------ Grau Adjacencia -----------+")
 
-    if(value2):
+    if(direc):
         print(27*" " + "|" + 40*" " + "|")
 
         if (size % 2 == 1):
@@ -314,6 +314,19 @@ def printAdjacencyMatrix(vertex, destinies):
     for i in destinies:
         table.rows.append(i)
     
+    table.rows.header = vertex
+    table.set_style(BeautifulTable.STYLE_BOX)
+
+    print(table)
+
+def printListEdges(vertex,destinies):
+    table = BeautifulTable(maxwidth=360)
+
+    table.columns.header = ["Vértice de Saída","Vértice de Chegada"]
+
+    for i in destinies:
+        table.rows.append(i)
+
     table.rows.header = vertex
     table.set_style(BeautifulTable.STYLE_BOX)
 

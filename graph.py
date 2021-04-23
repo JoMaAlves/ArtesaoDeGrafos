@@ -4,6 +4,7 @@ from vertex import vertex
 class graph:
     def __init__(self, direc, weight):
         self.nodeList = []
+        self.edgeList = []
         self.direc = direc
         self.weight = weight
         self.size = 0
@@ -88,18 +89,20 @@ class graph:
                 while True:
                     try:
                         print(" " * 24,end="")
-                        weight = int(input("Digite o peso da aresta: "))
+                        new_weight = int(input("Digite o peso da aresta: "))
                         break
                     except:
                         continue
 
+                self.edgeList.append( (new_weight, node1.value, node2.value) )
+
                 # A tuple is being used if there is a weight for the edge (vertex, weight)
                 if(self.direc):    
-                    node1.addNext( (node2, weight) )
-                    node2.addPrevious( (node1, weight) )
+                    node1.addNext( (node2, new_weight) )
+                    node2.addPrevious( (node1, new_weight) )
                 else:
-                    node1.addEdge( (node2, weight) )
-                    node2.addEdge( (node1, weight) )
+                    node1.addEdge( (node2, new_weight) )
+                    node2.addEdge( (node1, new_weight) )
 
             else:
                 if(self.direc):    
@@ -125,6 +128,10 @@ class graph:
         elif(answer == "2" or answer.capitalize() == "Matriz de adjacencia"):
             vertex, binary = self.getGraph(2)
             printAdjacencyMatrix(vertex, binary)
+        
+        elif(answer == "3" or answer.capitalize() == "Lista de arestas"):
+            edges, destinies = self.returnEdges()
+            printListEdges(edges, destinies)
     
     # Gets the graph order
     def getOrder(self):
@@ -155,9 +162,9 @@ class graph:
 
         # Checks if the graph is directed not
         if(self.direc):
-            printGetDegree( answer, answer2 )
+            printGetDegree( self.direc, answer, answer2 )
         else:
-            printGetDegree( answer )
+            printGetDegree( self.direc, answer )
     
     # Gets the list of adjacency of a vertex
     def vertexAdjacencyList(self):
@@ -221,3 +228,13 @@ class graph:
 
 
         return list_values,list_table
+
+    def returnEdges(self):
+        list_weight = []
+        list_destinies = []
+        for i in self.edgeList:
+            list_weight.append(str(i[0]))
+            list_destinies.append( (i[1],i[2]) )
+
+        
+        return list_weight,list_destinies
