@@ -14,6 +14,9 @@ class graph:
         printAddNode()
         nodes = input()
         node_aux = nodes.strip().split(' ')
+
+        if(nodes.strip() == ""):
+            return 1
         
         # Check if the nodes exist
         for i in node_aux:
@@ -82,8 +85,13 @@ class graph:
             # Adds the edge into the nodes edge lists according to weight and direction
             if(self.weight):
                 # Gets the edge's weight
-                print(" " * 24,end="")
-                weight = int(input("Digite o valor da aresta: "))
+                while True:
+                    try:
+                        print(" " * 24,end="")
+                        weight = int(input("Digite o peso da aresta: "))
+                        break
+                    except:
+                        continue
 
                 # A tuple is being used if there is a weight for the edge (vertex, weight)
                 if(self.direc):    
@@ -155,7 +163,7 @@ class graph:
         found = False
         for i in self.nodeList:
             if(i.value == check):
-                i.listAdjacents(self.direc)
+                i.listAdjacents(self.direc, self.weight)
                 found = True
                 break
         
@@ -173,7 +181,7 @@ class graph:
         found = False
         for i in self.nodeList:
             if(i.value == vertex[0]):
-                result = i.adjacencyCheck(vertex[1],self.direc)
+                result = i.adjacencyCheck(vertex[1], self.direc, self.weight)
                 found = True
                 break
         

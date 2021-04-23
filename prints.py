@@ -189,12 +189,12 @@ def printGetDegree(value, value2 = None):
         print(27*" " + "|" + 40*" " + "|")
 
         if (size % 2 == 1):
-            print(27*" " + "|" + (spaces - 8) * " " + "Entrada: " + f"{value}" + spaces * " " + (size - size1) * " " + "|")
-            print(27*" " + "|" + (spaces - 8) * " " + "  Saida: " + f"{value2}" + spaces * " " + (size - size2) * " " + "|")
+            print(27*" " + "|" + (spaces - 8) * " " + "Entrada: " + f"{value2}" + spaces * " " + (size - size1) * " " + "|")
+            print(27*" " + "|" + (spaces - 8) * " " + "  Saida: " + f"{value}" + spaces * " " + (size - size2) * " " + "|")
             print(27*" " + "|" + (spaces - 8) * " " + "  Total: " + f"{value + value2}" + spaces * " " + "|")
         else:
-            print(27*" " + "|" + (spaces - 9) * " " + "Entrada: " +  f"{value}" + spaces * " " + (size - size1) * " " + "|")
-            print(27*" " + "|" + (spaces - 9) * " " + "  Saida: " + f"{value2}" + spaces * " " + (size - size2) * " " + "|")
+            print(27*" " + "|" + (spaces - 9) * " " + "Entrada: " +  f"{value2}" + spaces * " " + (size - size1) * " " + "|")
+            print(27*" " + "|" + (spaces - 9) * " " + "  Saida: " + f"{value}" + spaces * " " + (size - size2) * " " + "|")
             print(27*" " + "|" + (spaces - 9) * " " + "  Total: " + f"{value + value2}" + spaces * " " + "|")
 
         print(27*" " + "|" + 40*" " + "|")
@@ -218,33 +218,33 @@ def printAdjListMenu():
                             Digite o vertice:""", end=" ")
 
 
-def printAdjList(direc, list1, list2 = None):
+def printAdjList(direc, next, prev = None):
 
-    size = (len(list1))
+    size = len(next)
     spaces = math.floor((62 - size)/2)
 
     print("\n")
     print(16*" " + "+-------------------- Lista de Adjacencia ---------------------+")
 
     if(direc):
-        if(len(list2) > len(list1)):
-            size = len(list2)
+        if(len(prev) > len(next)):
+            size = len(prev)
         
         print(16*" " + "|" + 62*" " + "|")
         
         if (size % 2 == 1):
-            print(16*" " + "|" + (spaces - 8) * " " + "Entrada: " + list1 + spaces * " " + (size - len(list1)) * " " + "|")
-            print(16*" " + "|" + (spaces - 8) * " " + "  Saida: " + list2 + spaces * " " + (size - len(list2)) * " " + "|")
+            print(16*" " + "|" + (spaces - 8) * " " + "Entrada: " + prev + spaces * " " + (size - len(prev)) * " " + "|")
+            print(16*" " + "|" + (spaces - 8) * " " + "  Saida: " + next + spaces * " " + (size - len(next)) * " " + "|")
         else:
-            print(16*" " + "|" + (spaces - 9) * " " + "Entrada: " + list1 + spaces * " " + (size - len(list1)) * " " + "|")
-            print(16*" " + "|" + (spaces - 9) * " " + "  Saida: " + list2 + spaces * " " + (size - len(list2)) * " " + "|")
+            print(16*" " + "|" + (spaces - 9) * " " + "Entrada: " + prev + spaces * " " + (size - len(prev)) * " " + "|")
+            print(16*" " + "|" + (spaces - 9) * " " + "  Saida: " + next + spaces * " " + (size - len(next)) * " " + "|")
         
         print(16*" " + "|" + 62*" " + "|")
     else:
         if (size % 2 == 1):
-            print(16*" " + "|" + (spaces + 1) * " " + list1 + spaces * " " + "|")
+            print(16*" " + "|" + (spaces + 1) * " " + next + spaces * " " + "|")
         else:
-            print(16*" " + "|" + spaces * " " + list1 + spaces * " " + "|")
+            print(16*" " + "|" + spaces * " " + next + spaces * " " + "|")
 
     print(16*" " + "+--------------------------------------------------------------+")
 

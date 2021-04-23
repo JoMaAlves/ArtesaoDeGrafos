@@ -52,43 +52,68 @@ class vertex:
         return False
 
     # Gets the list of Adjacent Edges and place it into a string
-    def listAdjacents(self,direc):
+    def listAdjacents(self, direc, weight):
         if(direc):
             next = ""
             prev = ""
 
-            for i in self.nextEdges:
-                next += str(i.value) + " "
+            if(weight):
+                for i in self.nextEdges:
+                    next += str(i[0].value) + " "
 
-            for i in self.prevEdges:
-                prev+=str(i.value) + " "
+                for i in self.prevEdges:
+                    prev+=str(i[0].value) + " "
+            else:
+                for i in self.nextEdges:
+                    next += str(i.value) + " "
+
+                for i in self.prevEdges:
+                    prev+=str(i.value) + " "
     
             printAdjList(direc, next.strip(), prev.strip())
 
         else:
             all = ""
-
-            for i in self.edges:
-                all +=str(i.value) + " "
+            
+            if(weight):
+                for i in self.edges:
+                    all +=str(i[0].value) + " "
+            else:
+                for i in self.edges:
+                    all +=str(i.value) + " "
 
             printAdjList(direc, all.strip())
 
     # Check if two vertex are adjacent
-    def adjacencyCheck(self, node, direc):
+    def adjacencyCheck(self, node, direc, weight):
         
         check = False
         if(direc):
-            for i in self.nextEdges:
-                if(node == i.value):
-                    check = True
-            
-            for i in self.prevEdges:
-                if(node == i.value):
-                    check = True
+            if(weight):
+                for i in self.nextEdges:
+                    if(node == i[0].value):
+                        check = True
+                
+                for i in self.prevEdges:
+                    if(node == i[0].value):
+                        check = True
+            else:
+                for i in self.nextEdges:
+                    if(node == i.value):
+                        check = True
+                
+                for i in self.prevEdges:
+                    if(node == i.value):
+                        check = True
         else:
-            for i in self.edges:
-                if(node == i.value):
-                    check = True
+            if(weight):
+                for i in self.edges:
+                    if(node == i[0].value):
+                        check = True
+            else:
+                for i in self.edges:
+                    if(node == i.value):
+                        check = True
             
         return check
 
