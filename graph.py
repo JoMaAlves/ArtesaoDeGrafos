@@ -213,7 +213,7 @@ class graph:
             list_values.append(i.value)
 
             if(choice == 1):
-                list_aux, size = i.getValuesMatrix(self.direc, self.weight)
+                list_aux, size = i.getValuesList(self.direc, self.weight)
                 if(size > max_size):
                     max_size = size
             elif(choice == 2):

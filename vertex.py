@@ -125,7 +125,7 @@ class vertex:
             return len(self.edges), None
     
     
-    def getValuesMatrix(self,direc, valor):
+    def getValuesList(self,direc, valor):
         lista_edges = []
 
         if(direc):

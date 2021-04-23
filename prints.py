@@ -172,7 +172,7 @@ def printGetDegree(direc, value, value2 = None):
     size1 = len(str(value))
     size = size1
 
-    if(value2):
+    if(direc):
         size2 = len(str(value2))
         size3 = len(str(value + value2))
         size = max(size, size2, size3)
