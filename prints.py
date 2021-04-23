@@ -269,6 +269,22 @@ def printAdjCheckResult(check):
                               +----------------------------------+              
     """)
 
+
+def printGraphMenu():
+    print("""
+                +--------------------------------------------------------------+                      
+                |                                                              |
+                |            De que forma deseja imprimir seu grafo:           |
+                |                                                              |
+                |                  [ 1 ] Lista de Adjacencia                   |
+                |                  [ 2 ] Matriz de Adjacencia                  |
+                |                  [ 3 ] Lista de Arestas                      |
+                |                                                              |
+                |      Opcao < 3 > disponivel apenas com grafos valorados!     |
+                +--------------------------------------------------------------+
+        
+                         Escolha:""", end=" ")
+
 def printAdjacencyList(vertex, destinies):
     subtable = BeautifulTable(maxwidth=120)
     subtable2 = BeautifulTable(maxwidth=240)

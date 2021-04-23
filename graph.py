@@ -115,11 +115,16 @@ class graph:
 
 
     def printGraph(self):
-        vertex, destinies= self.getGraph(1)
-        vertex2, binary = self.getGraph(2)
+        printGraphMenu()
+        answer = input().strip()
 
-        printAdjacencyList(vertex, destinies)
-        printAdjacencyMatrix(vertex2, binary)
+        if(answer == "1" or answer.capitalize() == "Lista de adjacencia"):
+            vertex, destinies= self.getGraph(1)
+            printAdjacencyList(vertex, destinies)
+
+        elif(answer == "2" or answer.capitalize() == "Matriz de adjacencia"):
+            vertex, binary = self.getGraph(2)
+            printAdjacencyMatrix(vertex, binary)
     
     # Gets the graph order
     def getOrder(self):
