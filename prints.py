@@ -34,8 +34,7 @@ def printStart(clear):
 
     while True:
         start = input("                             Resposta: ")
-        if ((start == "2") or (start.capitalize() == "Nao") 
-                or (start.capitalize() == "Não")):
+        if (start == "2") or (start.capitalize() == "Nao"):
             return 0, None, None
         elif ((start == "1") or (start.capitalize() == "Sim")):
             break
@@ -47,7 +46,7 @@ def printStart(clear):
                     |                                                          |
                     |                  Deseja criar um grafo:                  |
                     |                                                          |
-                    |         [ 1 ] Direcionado   [ 2 ] Não Direcionado        |
+                    |         [ 1 ] Direcionado   [ 2 ] Nao Direcionado        |
                     |                                                          |
                     +----------------------------------------------------------+
     """)
@@ -60,8 +59,7 @@ def printStart(clear):
             answer1 = True
             break
         
-        elif ((answer1 == "2") or (answer1.capitalize() == "Não direcionado")
-                or (answer1.capitalize() == "Nao direcionado")):
+        elif ((answer1 == "2") or (answer1.capitalize() == "Nao direcionado")):
             answer1 = False
             break
 
@@ -72,7 +70,7 @@ def printStart(clear):
                     |                                                          |
                     |                  Deseja criar um grafo:                  |
                     |                                                          |
-                    |            [ 1 ] Valorado   [ 2 ] Não Valorado           |
+                    |            [ 1 ] Valorado   [ 2 ] Nao Valorado           |
                     |                                                          |
                     +----------------------------------------------------------+
     """)
@@ -85,8 +83,7 @@ def printStart(clear):
             answer2 = True
             break
         
-        elif ((answer2 == "2") or (answer2.capitalize() == "Não valorado")
-                or (answer2.capitalize() == "Nao valorado")):
+        elif ((answer2 == "2") or (answer2.capitalize() == "Nao valorado")):
             answer2 = False
             break
 
@@ -133,7 +130,7 @@ def printAddEdge():
                 |            Digite os vertices a serem conectados:            |
                 |                 - Separados por espaco                       |
                 |                                                              |
-                |                          Ex: '12 5'                          |
+                |                          Ex: 'ab c'                          |
                 |                                                              |
                 |         Deixe vazio e pressione < Enter > para voltar        |
                 +--------------------------------------------------------------+
@@ -189,12 +186,12 @@ def printGetDegree(value, value2 = None):
         print(27*" " + "|" + 40*" " + "|")
 
         if (size % 2 == 1):
-            print(27*" " + "|" + (spaces - 8) * " " + "Entrada: " + f"{value2}" + spaces * " " + (size - size1) * " " + "|")
-            print(27*" " + "|" + (spaces - 8) * " " + "  Saida: " + f"{value}" + spaces * " " + (size - size2) * " " + "|")
+            print(27*" " + "|" + (spaces - 8) * " " + "Entrada: " + f"{value2}" + spaces * " " + (size - size2) * " " + "|")
+            print(27*" " + "|" + (spaces - 8) * " " + "  Saida: " + f"{value}" + spaces * " " + (size - size1) * " " + "|")
             print(27*" " + "|" + (spaces - 8) * " " + "  Total: " + f"{value + value2}" + spaces * " " + "|")
         else:
-            print(27*" " + "|" + (spaces - 9) * " " + "Entrada: " +  f"{value2}" + spaces * " " + (size - size1) * " " + "|")
-            print(27*" " + "|" + (spaces - 9) * " " + "  Saida: " + f"{value}" + spaces * " " + (size - size2) * " " + "|")
+            print(27*" " + "|" + (spaces - 9) * " " + "Entrada: " +  f"{value2}" + spaces * " " + (size - size2) * " " + "|")
+            print(27*" " + "|" + (spaces - 9) * " " + "  Saida: " + f"{value}" + spaces * " " + (size - size1) * " " + "|")
             print(27*" " + "|" + (spaces - 9) * " " + "  Total: " + f"{value + value2}" + spaces * " " + "|")
 
         print(27*" " + "|" + 40*" " + "|")
@@ -285,7 +282,7 @@ def printAdjacencyList(vertex, destinies):
     subtable2.set_style(BeautifulTable.STYLE_BOX)
 
     parent_table = BeautifulTable(maxwidth=360)
-    parent_table.columns.header = ["Vértice Origem", "Destinos"]
+    parent_table.columns.header = ["Vertice Origem", "Destinos"]
     parent_table.rows.append([subtable, subtable2])
     parent_table.columns.padding_left = 0
     parent_table.columns.padding_right = 0
