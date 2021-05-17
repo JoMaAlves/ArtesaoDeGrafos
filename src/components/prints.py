@@ -380,7 +380,7 @@ def printThanks():
 
 
 def animator (delay, repeat, clear):
-    filesnames = ["../../loading/capivara1.txt", "../../loading/capivara2.txt", "../../loading/capivara3.txt", "../../loading/capivara2.txt", "../../loading/capivara1.txt"]
+    filesnames = ["../../public/capivara1.txt", "../../public/capivara2.txt", "../../public/capivara3.txt", "../../public/capivara2.txt", "../../public/capivara1.txt"]
     
     frames = []
     here = os.path.dirname(os.path.abspath(__file__))
