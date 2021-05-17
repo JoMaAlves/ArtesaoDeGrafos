@@ -6,6 +6,7 @@
     * [graph.py](#1.2)
     * [vertex.py](#1.3)
     * [prints.py](#1.4)
+2. [Autores](#2)
 
 # Estrutura de Arquivos <a id="1"></a>
 
@@ -35,3 +36,5 @@ possível ocorrer de fato a interação humano-computador, na
 qual a máquina exibe as informações e o usuário
 correlaciona em resposta. Há também o tratamento dos
 dígitos de entrada.
+
+# Autores <a id="2"></a>
