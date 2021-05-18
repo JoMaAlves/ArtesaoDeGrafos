@@ -357,8 +357,29 @@ def printParalelEdge():
     print("""
                      +----------------------------------------------------+
                      |    Acao nao pode ser concluida: Aresta Paralela    |
-                     +----------------------------------------------------+              
+                     +----------------------------------------------------+
     """)
+
+def printDijkstraMenu():
+    print("""
+                           ___    _    _   _          _                
+                          |   \  (_)  (_) | |__  ___ | |_   _ _   __ _ 
+                          | |) | | |  | | | / / (_-< |  _| | '_| / _` |
+                +-------- |___/  |_| _/ | |_\_\ /__/  \__| |_|   \__,_| -------+
+                |                   |__/                                       |
+                |                                                              |
+                |     - Digite o vertice de origem e o vertice de destino      |
+                |          para calcular a menor distancia entre eles          |
+                |                                                              |
+                |     - Digite apenas o vertice de origem para calcular a      |
+                |           menor distancia entre ele e cada um dos            |
+                |                     vertices existentes                      |
+                |                                                              |
+                |                      Ex: 'Nodo1 Nodo3'                       |
+                |                                                              |
+                +--------------------------------------------------------------+
+                       
+                       Vertice(s):""", end=" ")
 
 def printThanks():
     print("""

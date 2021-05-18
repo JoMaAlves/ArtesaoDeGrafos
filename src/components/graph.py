@@ -38,7 +38,7 @@ class graph:
             nodes = input()
 
             # Breaks creation if there is no input
-            if(nodes == ""):
+            if(nodes.strip() == ""):
                 break
 
             nodes = nodes.strip().split(" ")
@@ -240,4 +240,15 @@ class graph:
         return list_weight,list_destinies
     
     def dijkstraAlgorithm(self):
+        if(not self.direc and not self.weight):
+            return 1
+
+        printDijkstraMenu()
+        nodes = input()
+
+        # Breaks creation if there is no input
+        if(nodes.strip() == ""):
+            return 1
+
+        nodes = nodes.strip().split(" ")
         return 0
