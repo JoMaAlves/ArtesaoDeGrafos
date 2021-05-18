@@ -17,7 +17,7 @@ animator(0.2, 3, clear)
 start, direc, weight = printStart(clear)
 
 # Creates the graph
-graph = graph(direc, weight)
+mainGraph = graph(direc, weight)
 
 # Loop that maintains the software
 while start:
@@ -30,35 +30,39 @@ while start:
         break
 
     elif((answer == "1") or (answer.capitalize() == "Adicionar vertice")):
-        graph.addNode()
+        mainGraph.addNode()
         continue
 
     elif((answer == "2") or (answer.capitalize() == "Adicionar aresta")):
-        graph.addEdge()
+        mainGraph.addEdge()
         continue
 
     elif((answer == "3") or (answer.capitalize() == "Imprimir grafo")):
-        graph.printGraph()
+        mainGraph.printGraph()
         continue
 
     elif((answer == "4") or (answer.capitalize() == "Ordem do grafo")):
-        graph.getOrder()
+        mainGraph.getOrder()
         continue
 
     elif((answer == "5") or (answer.capitalize() == "Tamanho do grafo")):
-        graph.getSize()
+        mainGraph.getSize()
         continue
 
     elif((answer == "6") or (answer.capitalize() == "Listar vertices adjacentes")):
-        graph.vertexAdjacencyList()
+        mainGraph.vertexAdjacencyList()
         continue
         
     elif((answer == "7") or (answer.capitalize() == "Checar grau do vertice")):
-        graph.getDegree()
+        mainGraph.getDegree()
         continue
     
     elif((answer == "8") or (answer.capitalize() == "Checar adjacencia")):
-        graph.adjacencyCheck()
+        mainGraph.adjacencyCheck()
+        continue
+    
+    elif((answer == "9") or (answer.capitalize() == "Calcular menor distacia")):
+        mainGraph.dijkstraAlgorithm()
         continue
 
 printThanks()

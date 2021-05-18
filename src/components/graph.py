@@ -238,3 +238,6 @@ class graph:
 
         
         return list_weight,list_destinies
+    
+    def dijkstraAlgorithm(self):
+        return 0

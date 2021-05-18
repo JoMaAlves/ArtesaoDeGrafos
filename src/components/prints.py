@@ -101,8 +101,8 @@ def printMenu():
                 |   [ 1 ] Adicionar Vertice   [ 6 ] Listar Vertices Adjacentes |
                 |   [ 2 ] Adicionar Aresta    [ 7 ] Checar Grau de Vertice     |
                 |   [ 3 ] Imprimir Grafo      [ 8 ] Checar Adjacencia          |
-                |   [ 4 ] Ordem do Grafo      [ 0 ] Sair                       |
-                |   [ 5 ] Tamanho do Grafo                                     |
+                |   [ 4 ] Ordem do Grafo      [ 9 ] Calcular Menor Distacia    |
+                |   [ 5 ] Tamanho do Grafo    [ 0 ] Sair                       |
                 |                                                              |
                 +--------------------------------------------------------------+
     """)
