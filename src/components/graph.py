@@ -20,6 +20,7 @@ class graph:
             return 1
         
         # Check if the nodes exist
+        newNodes = []
         for i in node_aux:
             check = False
             for j in self.nodeList:
@@ -27,8 +28,15 @@ class graph:
                     check = True
 
             if(not check):
-                self.nodeList.append(vertex(i))
-        
+                newNodes.append(i)
+
+        if(len(self.nodeList)):
+            for i in self.nodeList:
+                i.addNewPaths(newNodes)
+
+        for i in newNodes:
+            self.nodeList.append(vertex(i,dict.fromkeys(self.getNodes() + newNodes)))
+
         printDone()
 
     # Creates Edges over a loop
@@ -275,3 +283,10 @@ class graph:
                 return (True, i)
         
         return (False, None)
+
+    def getNodes(self):
+        nodes = []
+        for i in self.nodeList:
+            nodes.append(i.value)
+        
+        return nodes

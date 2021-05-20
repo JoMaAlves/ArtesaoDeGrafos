@@ -1,13 +1,14 @@
 from components.prints import *
 
 class vertex:
-    def __init__(self, value):
+    def __init__(self, value, paths):
         self.value = value
         self.edges = []
         self.prevEdges = []
         self.nextEdges = []
-        #next aponta 
-        #prev é apontado.
+        self.paths = paths
+        self.paths[value] = (0,[value])
+
 
     # Adds an edge to the edges list if the graph is not directed
     def addEdge(self, edge):
@@ -20,6 +21,11 @@ class vertex:
     # Adds an edge to the prevEdges list if it is a  directed graph
     def addPrevious(self, prev):
         self.prevEdges.append(prev)
+    
+    # Add new paths
+    def addNewPaths(self, paths):
+        for i in paths:
+            self.paths[i] = None
 
     # Checks if there is a connection between the vertex already
     def checkEdges(self, vertex, direc, weight):
