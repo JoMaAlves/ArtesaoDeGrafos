@@ -74,7 +74,7 @@ class graph:
                         break
             
             # Checks if both vertex were found
-            if(check[0] == False or check[1]== False):
+            if(not check[0] or not check[1]):
                 printNotFound()
                 continue
             
@@ -240,7 +240,7 @@ class graph:
         return list_weight,list_destinies
     
     def dijkstraAlgorithm(self):
-        if(not self.direc and not self.weight):
+        if(not self.direc or not self.weight):
             return 1
 
         printDijkstraMenu()
@@ -251,4 +251,27 @@ class graph:
             return 1
 
         nodes = nodes.strip().split(" ")
-        return 0
+        
+        # Checks if both vertex were found
+        result = None
+        if(len(nodes) == 2):
+            check = ( self.checkNodeExists(nodes[0]), self.checkNodeExists(nodes[1]) )
+            if(check[0][0] and check[1][0]):
+                return 0
+            else:
+                printNotFound()
+                return 1
+        else:
+            check = self.checkNodeExists(nodes[0])
+            if(check[0]):
+                return 0
+            else:
+                printNotFound()
+                return 1
+
+    def checkNodeExists(self, node):
+        for i in self.nodeList:
+            if(node == i.value):
+                return (True, i)
+        
+        return (False, None)
