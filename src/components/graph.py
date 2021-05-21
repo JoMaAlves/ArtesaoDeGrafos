@@ -44,9 +44,6 @@ class graph:
 
         printDone()
 
-        for i in self.nodeList:
-            print(f"node: {i.value} \n paths: {i.paths}\n")
-
     # Creates Edges over a loop
     def addEdge(self):
         while 1:
@@ -134,9 +131,6 @@ class graph:
         printDone()
 
         # self.forceUpdate()
-
-        for i in self.nodeList:
-            print(f"node: {i.value} \n paths: {i.paths}\n")
 
 
     def printGraph(self):
@@ -275,10 +269,10 @@ class graph:
         nodes = nodes.strip().split(" ")
         
         # Checks if both vertex were found
-        result = None
         if(len(nodes) == 2):
-            check = ( self.checkNodeExists(nodes[0]), self.checkNodeExists(nodes[1]) )
+            check = [ self.checkNodeExists(nodes[0]), self.checkNodeExists(nodes[1]) ]
             if(check[0][0] and check[1][0]):
+                printDijkstra(check[0][1], check[1][1].value)
                 return 0
             else:
                 printNotFound()
@@ -286,6 +280,7 @@ class graph:
         else:
             check = self.checkNodeExists(nodes[0])
             if(check[0]):
+                printDijkstra(check[1])
                 return 0
             else:
                 printNotFound()
@@ -294,9 +289,9 @@ class graph:
     def checkNodeExists(self, node):
         for i in self.nodeList:
             if(node == i.value):
-                return (True, i)
+                return [True,i]
         
-        return (False, None)
+        return [False,i]
 
     def getNodes(self):
         nodes = []

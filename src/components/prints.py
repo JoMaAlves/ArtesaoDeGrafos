@@ -381,6 +381,64 @@ def printDijkstraMenu():
                        
                        Vertice(s):""", end=" ")
 
+
+
+def printDijkstra(node1, node2 = 0):
+
+    if(node2):
+        table = BeautifulTable(maxwidth=120)
+        table.columns.header = ["Início","Percurso", "Custo"]
+        # begin_path = node1.value + "->" + node2
+        # table.rows.header = [begin_path]
+        table.rows.append([ node1.value, node1.paths[node2][1], node1.paths[node2][0]])
+        table.set_style(BeautifulTable.STYLE_BOX)
+        print(table)
+        
+    else:
+        subtable = BeautifulTable(maxwidth=120)
+        subtable1 = BeautifulTable(maxwidth=120)
+        subtable2 = BeautifulTable(maxwidth=240)
+        
+        finalList = []
+        nodeList = []
+        priceList = []
+        keys = node1.paths.keys()
+        
+        for i in keys:
+            priceList.append(str(node1.paths[i][0]))
+            finalList.append(node1.paths[i][1])
+            nodeList.append(node1.value)
+
+        subtable.columns.append(nodeList)
+        subtable1.columns.append(priceList)
+        
+        lenght = 0
+        for i in range(len(finalList)):
+            if len(finalList[i]) > lenght:
+                lenght = len(finalList[i])
+        
+        for i in range(len(finalList)):
+            if(lenght > len(finalList[i])):
+                size = lenght - len(finalList[i])
+                for j in range(size):
+                    finalList[i].append(" ")
+            subtable2.rows.append(finalList[i])
+
+        
+
+        subtable.set_style(BeautifulTable.STYLE_BOX)
+        subtable1.set_style(BeautifulTable.STYLE_BOX)
+        subtable2.set_style(BeautifulTable.STYLE_BOX)
+
+        parent_table = BeautifulTable(maxwidth=480)
+        parent_table.columns.header = ["Vertice Origem", "Custo", "Trajeto"]
+        parent_table.rows.append([subtable, subtable1, subtable2])
+        parent_table.columns.padding_left = 0
+        parent_table.columns.padding_right = 0
+
+        parent_table.set_style(BeautifulTable.STYLE_BOX)
+        print(parent_table)
+
 def printThanks():
     print("""
                          ___    _            _                    _       
