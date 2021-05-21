@@ -7,8 +7,7 @@ class vertex:
         self.prevEdges = []
         self.nextEdges = []
         self.paths = paths
-        self.paths[value] = (0,[value])
-
+        self.paths[value] = [0,[value]]
 
     # Adds an edge to the edges list if the graph is not directed
     def addEdge(self, edge):
@@ -25,7 +24,7 @@ class vertex:
     # Add new paths
     def addNewPaths(self, paths):
         for i in paths:
-            self.paths[i] = None
+            self.paths[i] = [0,[]]
 
     # Checks if there is a connection between the vertex already
     def checkEdges(self, vertex, direc, weight):
