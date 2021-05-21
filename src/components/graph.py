@@ -133,6 +133,8 @@ class graph:
 
         printDone()
 
+        # self.forceUpdate()
+
         for i in self.nodeList:
             print(f"node: {i.value} \n paths: {i.paths}\n")
 
@@ -316,10 +318,6 @@ class graph:
                                 node1.paths[i.value][0] > (node2.paths[i.value][0] + value)):
                         node1.paths[i.value][0] = node2.paths[i.value][0] + value
                         node1.paths[i.value][1] = path + node2.paths[i.value][1]
-                    
-                    elif(node1.paths[i.value][0] == (node2.paths[i.value][0] + value) and 
-                                len(node1.paths[i.value][1]) > len(node1.paths[i.value][1]) + 1):
-                        node1.paths[i.value][1] = path + node2.paths[i.value][1]
 
             
             if(node1.paths[node2.value][0] > value or node1.paths[node2.value][0] == 0):
@@ -330,10 +328,10 @@ class graph:
             return 1
 
         for i in node1.prevEdges:
-            if(i == node2 or i == node1):
+            if(i[0] == node2 or i[0] == node1):
                 break
             for j in self.nodeList:
-                if(j == i or j == node1):
+                if(j == i[0] or j == node1):
                     continue
                 
                 if(node1.paths[j.value] != [0,[]]):
@@ -341,14 +339,25 @@ class graph:
                     if(i[0].paths[j.value] == [0,[]] or 
                                 i[0].paths[j.value][0] > (node1.paths[j.value][0] + i[0].paths[node1.value][0])):
                         i[0].paths[j.value][0] = node1.paths[j.value][0] + i[0].paths[node1.value][0]
-                        i[0].paths[j.value][1] = [node1.value] + node1.paths[j.value][1]
-                    
-                    elif(i[0].paths[j.value][0] == (node1.paths[j.value][0] + i[0].paths[node1.value][0]) and 
-                                len(i[0].paths[j.value][1]) > len(node1.paths[j.value][1]) + 1):
-                        i[0].paths[j.value][1] = [node1.value] + node1.paths[j.value][1]
+                        i[0].paths[j.value][1] = i[0].paths[node1.value][1] + node1.paths[j.value][1]
             
             try:
                 self.updatePaths(i[0], node2, 0, [node1.value], 1, (lock + 1))
             except:
                 continue
-            
+    
+    # def forceUpdate(self):
+
+    #     for node1 in self.nodeList:
+    #         for node2 in node1.nextEdges:
+    #             for i in self.nodeList:
+
+    #                 if(i == node1 or i == node2[0]):
+    #                     continue
+
+    #                 if(node2[0].paths[i.value] != [0,[]]):
+
+    #                     if(node1.paths[i.value] == [0,[]] or 
+    #                                 node1.paths[i.value][0] > (node2[0].paths[i.value][0] + node1.paths[node2[0].value][0])):
+    #                         node1.paths[i.value][0] = node2[0].paths[i.value][0] + node1.paths[node2[0].value][0]
+    #                         node1.paths[i.value][1] = i[0].paths[node1.value][1] + node2[0].paths[i.value][1]
