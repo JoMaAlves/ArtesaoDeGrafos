@@ -22,7 +22,7 @@ diversas funcionalidades em sequência.
 sistema, na qual todas as informações e características do
 grafo são disponibilizadas. Sendo estas: adição de vértice,
 arestas, imprimir o grafo, grau do vértice, checar adjacência
-e lista de adjacência, ordem e tamanho.
+e lista de adjacência, ordem, tamanho e algoritmo de Dijkstra.
 
 ## vertex.py <a id="1.3"></a>
 **Vertex** comporta a classe vértice, cujos atributos são: valor
