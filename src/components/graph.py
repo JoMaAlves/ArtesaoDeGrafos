@@ -113,7 +113,7 @@ class graph:
                 if(self.direc):    
                     node1.addNext( (node2, new_weight) )
                     node2.addPrevious( (node1, new_weight) )
-                    self.updatePaths(node1, node2, new_weight, [node2.value])
+                    self.createPaths(node1, node2, new_weight)
                 else:
                     node1.addEdge( (node2, new_weight) )
                     node2.addEdge( (node1, new_weight) )
@@ -129,8 +129,6 @@ class graph:
             self.size += 1
 
         printDone()
-
-        # self.forceUpdate()
 
 
     def printGraph(self):
@@ -300,59 +298,28 @@ class graph:
         
         return nodes
 
-    def updatePaths(self, node1, node2, value, path, recursion = 0, lock = 0):
+    def createPaths(self, node1, node2, value):
 
-        if(not recursion):
-            for i in self.nodeList:
-                if(i == node1 or i == node2):
-                    continue
+        if((node1.paths[node2.value][0] > value or node1.paths[node2.value][0] == 0)):
+            node1.paths[node2.value][0] = value
+            node1.paths[node2.value][1] = [node2.value]
 
-                if(node2.paths[i.value] != [0,[]]):
-
-                    if(node1.paths[i.value] == [0,[]] or 
-                                node1.paths[i.value][0] > (node2.paths[i.value][0] + value)):
-                        node1.paths[i.value][0] = node2.paths[i.value][0] + value
-                        node1.paths[i.value][1] = path + node2.paths[i.value][1]
-
-            
-            if(node1.paths[node2.value][0] > value or node1.paths[node2.value][0] == 0):
-                node1.paths[node2.value][0] = value
-                node1.paths[node2.value][1] = path
-
-        if(lock == 20):
-            return 1
-
-        for i in node1.prevEdges:
-            if(i[0] == node2 or i[0] == node1):
-                break
-            for j in self.nodeList:
-                if(j == i[0] or j == node1):
-                    continue
-                
-                if(node1.paths[j.value] != [0,[]]):
-
-                    if(i[0].paths[j.value] == [0,[]] or 
-                                i[0].paths[j.value][0] > (node1.paths[j.value][0] + i[0].paths[node1.value][0])):
-                        i[0].paths[j.value][0] = node1.paths[j.value][0] + i[0].paths[node1.value][0]
-                        i[0].paths[j.value][1] = i[0].paths[node1.value][1] + node1.paths[j.value][1]
-            
-            try:
-                self.updatePaths(i[0], node2, 0, [node1.value], 1, (lock + 1))
-            except:
-                continue
-    
-    # def forceUpdate(self):
-
-    #     for node1 in self.nodeList:
-    #         for node2 in node1.nextEdges:
-    #             for i in self.nodeList:
-
-    #                 if(i == node1 or i == node2[0]):
-    #                     continue
-
-    #                 if(node2[0].paths[i.value] != [0,[]]):
-
-    #                     if(node1.paths[i.value] == [0,[]] or 
-    #                                 node1.paths[i.value][0] > (node2[0].paths[i.value][0] + node1.paths[node2[0].value][0])):
-    #                         node1.paths[i.value][0] = node2[0].paths[i.value][0] + node1.paths[node2[0].value][0]
-    #                         node1.paths[i.value][1] = i[0].paths[node1.value][1] + node2[0].paths[i.value][1]
+        for target in self.nodeList:
+            for nextEdge in target.nextEdges:
+                for key in self.nodeList:
+                    if(key == target):
+                        continue
+                    if(nextEdge[0].paths[key.value] != [0,[]]):
+                        if(target.paths[key.value] == [0,[]] or
+                                    target.paths[key.value][0] > (nextEdge[0].paths[key.value][0] + target.paths[nextEdge[0].value][0])):
+                            target.paths[key.value][0] = target.paths[nextEdge[0].value][0] + nextEdge[0].paths[key.value][0]
+                            target.paths[key.value][1] = target.paths[nextEdge[0].value][1] + nextEdge[0].paths[key.value][1]
+            for prevEdge in target.prevEdges:
+                for key in self.nodeList:
+                    if(key == target):
+                        continue
+                    if(target.paths[key.value] != [0,[]]):
+                        if(prevEdge[0].paths[key.value] == [0,[]] or
+                                    prevEdge[0].paths[key.value][0] > (target.paths[key.value][0] + prevEdge[0].paths[target.value][0])):
+                            prevEdge[0].paths[key.value][0] = prevEdge[0].paths[target.value][0] + target.paths[key.value][0]
+                            prevEdge[0].paths[key.value][1] = prevEdge[0].paths[target.value][1] + target.paths[key.value][1]
