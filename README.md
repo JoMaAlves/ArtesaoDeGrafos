@@ -1,40 +1,46 @@
 # Documentação
 
 # Sumário
-1. [Estrutura de Dados](#1)
-    * [main.py](#1.1)
-    * [graph.py](#1.2)
-    * [vertex.py](#1.3)
-    * [prints.py](#1.4)
-2. [Autores](#2)
 
-# Estrutura de Arquivos <a id="1"></a>
+Projeto construido durante a cadeira de Teoria dos Grafos, tem como objetivo a criação de um Grafo e as varias interações dentro do mesmo.
+# Estrutura de Arquivos
 
-## main.py <a id="1.1"></a>
-**Main** é o principal dos arquivos. Ao executar o sistema, é
-este arquivo que primeiro é acionado e viabiliza a interação
+### main.py
+**Main** é o principal dos arquivos. Para executar o sistema, é
+este arquivo que deve ser acionado, assim viabilizando a interação
 com o usuário. Comporta-se de modo contínuo até que seja
 forçado a interromper, assim o usuário pode executar as
 diversas funcionalidades em sequência.
 
-## graph.py <a id="1.2"></a>
+### graph.py
 **Graph** comporta a classe do grafo, a principal em nosso
 sistema, na qual todas as informações e características do
-grafo são disponibilizadas. Sendo estas: adição de vértice,
-arestas, imprimir o grafo, grau do vértice, checar adjacência
-e lista de adjacência, ordem, tamanho e algoritmo de Dijkstra.
+grafo são disponibilizadas. Sendo estas: 
 
-## vertex.py <a id="1.3"></a>
+* Adição de Vértice
+* Adição de Arestas
+* Imprimir o Grafo
+* Grau do Vértice
+* Checar Adjacência
+* Disponibilizar Lista de Adjacência
+* Checar a Ordem e Tamanho de um Vértice
+* Calcular Menor Distância entre Dois Vértices utilizando o Algoritmo de Dijkstra
+
+### vertex.py
 **Vertex** comporta a classe vértice, cujos atributos são: valor
 e lista de arestas. Permite também a pesquisa interna por
 informações cruciais.
 
-## prints.py <a id="1.4"></a>
-**Prints** é o mecanismo de exibição do menu e todos os
-pontos de interface no terminal. Com este arquivo é
-possível ocorrer de fato a interação humano-computador, na
-qual a máquina exibe as informações e o usuário
-correlaciona em resposta. Há também o tratamento dos
-dígitos de entrada.
+### prints.py
+Aqui estão todas as funções de print para uma interação mais divertida com o terminal. Existe também um tratamento dos valores, para a interface adaptar seu tamanho de acordo com a quantidade de dígitos de cada informação mutável.
 
-# Autores <a id="2"></a>
+# Artesões do Software
+
+<table align="center">
+  <tr>
+    <td align="center"><a href="https://github.com/DuduSouzaVeiga"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/54594204?v=4" width="100px;" alt=""/><br /><sub><b>Eduardo Souza</b></sub></a><br /><p>💻</p></td>
+    <td align="center"><a href="https://github.com/gtborges"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/49994586?v=4" width="100px;" alt=""/><br /><sub><b>Guilherme Borges</b></sub></a><br /><p>🎧</p></td>
+    <td align="center"><a href="https://github.com/JoMaAlves"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/50152498?v=4" width="100px;" alt=""/><br /><sub><b>João Marcelo Alves</b></sub></a><br /><p>🦖</p></td>
+    <td align="center"><a href="https://github.com/OlavoFerraz"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/51130831?v=4" width="100px;" alt=""/><br /><sub><b>Olavo Ferraz</b></sub></a><br /><p href="https://github.com/OlavoFerraz">🌵</p></td>
+  </tr>
+</table>
