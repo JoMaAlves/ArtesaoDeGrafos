@@ -382,6 +382,16 @@ def printDijkstraMenu():
                        Vertice(s):""", end=" ")
 
 
+def printDijkstraFail():
+    print("""
+                   +--------------------------------------------------------+   
+                   |                                                        |
+                   |            Dijkstra so disponivel em grafos            |
+                   |                valorados e direcionados                |
+                   |                                                        |
+                   +--------------------------------------------------------+
+    """)
+
 
 def printDijkstra(node1, node2 = 0):
 

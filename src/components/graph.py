@@ -255,6 +255,7 @@ class graph:
     
     def dijkstraAlgorithm(self):
         if(not self.direc or not self.weight):
+            printDijkstraFail()
             return 1
 
         printDijkstraMenu()
